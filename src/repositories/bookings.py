@@ -2,6 +2,7 @@ from datetime import date
 
 from sqlalchemy import select
 
+from src.exceptions import AllRoomsAreBookedException
 from src.models.bookings import BookingsOrm
 
 from src.repositories.base import BaseRepository
@@ -12,7 +13,7 @@ from src.schemas.bookings import  BookingAddRequest
 
 class BookingsRepository(BaseRepository):
     model = BookingsOrm
-    mapper = BookingDataMapper
+    mapper = BookingDataMapper()
 
 
     async def get_bookings_with_today_checkin(self):
@@ -36,5 +37,5 @@ class BookingsRepository(BaseRepository):
         if data.room_id in rooms_ids_to_book:
             new_booking = await self.add(data)
             return new_booking
-        else:
-            raise ValueError("Нет свободных номеров данного типа на выбранные даты.")
+
+        raise AllRoomsAreBookedException

@@ -9,7 +9,7 @@ from src.schemas.users import  UserWithHashedPassword
 
 class UsersRepository(BaseRepository):
     model = UsersOrm
-    mapper = UserDataMapper
+    mapper = UserDataMapper()
 
 
     async def get_user_with_hashed_password(self, email: EmailStr):

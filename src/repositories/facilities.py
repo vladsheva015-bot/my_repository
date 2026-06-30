@@ -8,7 +8,7 @@ from src.schemas.facilities import  RoomFacility
 
 class FacilitiesRepository(BaseRepository):
     model= FacilitiesOrm
-    mapper = FacilitiesDataMapper
+    mapper = FacilitiesDataMapper()
 
 
 class RoomFacilitiesRepository(BaseRepository):

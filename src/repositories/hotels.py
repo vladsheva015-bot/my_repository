@@ -12,7 +12,7 @@ from src.schemas.hotels import Hotel
 
 class HotelsRepository(BaseRepository):
     model= HotelsOrm
-    mapper = HotelDataMapper
+    mapper = HotelDataMapper()
 
     async def get_filtered_by_time(
             self,
